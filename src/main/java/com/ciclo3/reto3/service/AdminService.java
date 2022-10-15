@@ -34,15 +34,11 @@ public class AdminService {
     public Admin update(Admin a){
         if (a.getIdAdmin() != null){
             Optional<Admin> adminEncontrado = adminRepository.getAdmin(a.getIdAdmin());
-            if (!adminEncontrado.isEmpty()) {//aqui se verifica que no este vacio
+            if (!adminEncontrado.isEmpty()) {
                 if (a.getPassword() != null) {
                     adminEncontrado.get().setPassword(a.getPassword());
                 }
-                /*
-                if (a.getEmail() != null){
-                    adminEncontrado.get().setEmail(a.getEmail());
-                }
-                 */
+
                 if (a.getName() != null){
                     adminEncontrado.get().setName(a.getName());
                 }
@@ -59,4 +55,4 @@ public class AdminService {
         return resultado;
     }
 }
-}
+
