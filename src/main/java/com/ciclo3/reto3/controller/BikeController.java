@@ -20,7 +20,6 @@ public class BikeController {
         return bikeService.getAll();
     }
 
-
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Bike save(@RequestBody Bike c){
