@@ -5,24 +5,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
-@Table (name = "message")
-public class Message implements Serializable {
-
+@Table(name = "message")
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
+    // @Column(length = 45)
     private String messageText;
 
     @ManyToOne
-    @JoinColumn(name = "game_id")
-    @JsonIgnoreProperties({"messages","reservations"})
-    private Game game;
+    @JoinColumn(name = "bikeId")
+    @JsonIgnoreProperties({"message", "reservations"})
+    private Bike bike;
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JsonIgnoreProperties({"message", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {
@@ -41,12 +40,12 @@ public class Message implements Serializable {
         this.messageText = messageText;
     }
 
-    public Game getGame() {
-        return game;
+    public Bike getBike() {
+        return bike;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setBike(Bike bike) {
+        this.bike = bike;
     }
 
     public Client getClient() {

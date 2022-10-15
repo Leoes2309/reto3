@@ -8,25 +8,28 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table (name ="reservation")
-public class Reservation implements Serializable {
-
+@Table(name = "reservation")
+public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
-    private Date startDate;
-    private Date devolutionDate;
-    private String status = "created";
+    private Date startDate;//fecha de inicio
+    private  Date devolutionDate;
+    private  String status="created";
 
     @ManyToOne
-    @JoinColumn(name = "game_id")
-    @JsonIgnoreProperties("reservations")
-    private Game game;
+    @JoinColumn(name = "bikeId" )
+    @JsonIgnoreProperties("reservation")
+    private  Bike bike;
 
     @ManyToOne
-    @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JoinColumn(name = "ClientId" )
+    @JsonIgnoreProperties({"reservations","menssage"})
     private Client client;
+
+    @OneToOne
+    @JsonIgnoreProperties("reservation")
+    private Score score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -60,12 +63,12 @@ public class Reservation implements Serializable {
         this.status = status;
     }
 
-    public Game getGame() {
-        return game;
+    public Bike getBike() {
+        return bike;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setBike(Bike bike) {
+        this.bike = bike;
     }
 
     public Client getClient() {
@@ -74,5 +77,13 @@ public class Reservation implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
     }
 }

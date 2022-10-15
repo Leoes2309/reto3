@@ -7,27 +7,26 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table (name = "category")
-public class Category implements Serializable {
-
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String description;
+    private Integer Id;
 
+    private String name;
+
+    private String description;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
     @JsonIgnoreProperties("category")
-    private List<Game> games;
-
+    private List<Bike> bikes;
 
     public Integer getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getName() {
@@ -46,12 +45,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Game> getGames() {
-        return games;
+    public List<Bike> getBikes() {
+        return bikes;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setBikes(List<Bike> bikes) {
+        this.bikes = bikes;
     }
-
 }
