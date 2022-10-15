@@ -1,6 +1,6 @@
 package com.ciclo3.reto3.service;
 
-import com.ciclo3.reto3.repository.GameRepository;
+import com.ciclo3.reto3.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 public class GameService {
 
     @Autowired
-    private GameRepository gameRepository;
+    private ScoreRepository gameRepository;
 
     public List<Game> getAll(){
         return gameRepository.getAll();

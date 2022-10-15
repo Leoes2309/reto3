@@ -1,7 +1,7 @@
 package com.ciclo3.reto3.controller;
 
 import com.ciclo3.reto3.entities.Score;
-import com.ciclo3.reto3.service.GameService;
+import com.ciclo3.reto3.service.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

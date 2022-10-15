@@ -1,5 +1,6 @@
 package com.ciclo3.reto3.repository;
 
+import com.ciclo3.reto3.entities.Score;
 import com.ciclo3.reto3.repository.crudRepository.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,26 +9,26 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class GameRepository {
+public class ScoreRepository {
 
     @Autowired
     private ScoreCrudRepository gameCrudRepository;
 
-    public List<Game> getAll(){
+    public List<Score> getAll(){
 
-        return (List<Game>) gameCrudRepository.findAll();
+        return (List<Score>) gameCrudRepository.findAll();
     }
 
-    public Optional<Game> getGame(int id){
+    public Optional<Score> getGame(int id){
         return gameCrudRepository.findById(id);
     }
 
-    public Game save(Game g){
+    public Score save(Score g){
 
         return gameCrudRepository.save(g);
     }
 
-    public void delete(Game g){
+    public void delete(Score g){
 
         gameCrudRepository.delete(g);
     }
