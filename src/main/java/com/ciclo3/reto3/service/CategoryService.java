@@ -13,58 +13,23 @@ public class CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
-
-    public List<Category> getAll(){
-
-        return categoryRepository.getAll();
-    }
-    public Optional<Category> getLibrary(int id){
+    public Optional<Category> getCategory(int id) {
         return categoryRepository.getCategory(id);
     }
-    public Category save(Category c){
-        if(c.getId()==null){
+
+    public List<Category> getAll() {
+        return categoryRepository.getAll();
+    }
+    public Category save(Category c) {
+        if (c.getId() == null) {
             return categoryRepository.save(c);
-        }else{
+        } else {
             Optional<Category> e = categoryRepository.getCategory(c.getId());
-            if(e.isPresent()){
+            if (!e.isEmpty()) {
                 return c;
-            }else{
+            } else {
                 return categoryRepository.save(c);
             }
         }
     }
-    public Category update(Category c){
-        if(c.getId()!=null){
-            Optional<Category> q = categoryRepository.getCategory(c.getId());
-            if(q.isPresent()){
-                if(c.getName()!=null){
-                    q.get().setName(c.getName());
-                }
-                if(c.getDescription()!=null){
-                    q.get().setDescription(c.getDescription());
-                }
-                if(c.getGames()!=null){
-                    q.get().setGames(c.getGames());
-                }
-                categoryRepository.save(q.get());
-                return q.get();
-            }else{
-                return c;
-            }
-        }else{
-            return c;
-        }
-    }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Category>g= categoryRepository.getCategory(id);
-        if(g.isPresent()){
-            categoryRepository.delete(g.get());
-            flag=true;
-        }
-        return flag;
-
-    }
-
-
 }

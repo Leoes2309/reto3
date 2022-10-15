@@ -1,6 +1,5 @@
 package com.ciclo3.reto3.service;
 
-import com.ciclo3.reto3.entities.Category;
 import com.ciclo3.reto3.entities.Reservation;
 import com.ciclo3.reto3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,64 +13,41 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
-
     public List<Reservation> getAll(){
-
-        return reservationRepository.getAll();
+        return (List<Reservation>) reservationRepository.getAll();
     }
-    public Optional<Reservation> getReservation(int id){
+    public Optional<Reservation> getReservation(int id) {
         return reservationRepository.getReservation(id);
     }
-    public Reservation save(Reservation r){
-        if(r.getIdReservation()==null){
-            return reservationRepository.save(r);
-        }else{
-            Optional<Reservation> e = reservationRepository.getReservation(r.getIdReservation());
-            if(e.isPresent()){
-                return r;
-            }else{
-                return reservationRepository.save(r);
+
+    public Reservation save(Reservation a){
+        if (a.getIdReservation() == null){
+            return reservationRepository.save(a);
+        } else {
+            Optional<Reservation> reservaEncontrado = reservationRepository.getReservation(a.getIdReservation());
+            if (reservaEncontrado.isEmpty()){
+                return reservationRepository.save(a);
+            }else {
+                return a;
             }
         }
     }
-    public Reservation update(Reservation r){
-        if(r.getIdReservation()!=null){
-            Optional<Reservation> q = reservationRepository.getReservation(r.getIdReservation());
-            if(q.isPresent()){
-                if(r.getStartDate()!=null){
-                    q.get().setStartDate(r.getStartDate());
+    public Reservation update(Reservation re){
+        if (re.getIdReservation() != null){
+            Optional<Reservation> reservaEncontrada = reservationRepository.getReservation(re.getIdReservation());
+            if (!reservaEncontrada.isEmpty()) {
+                if (re.getStartDate() != null) {
+                    reservaEncontrada.get().setStartDate(re.getStartDate());
                 }
-                if(r.getDevolutionDate()!=null){
-                    q.get().setDevolutionDate(r.getDevolutionDate());
+                if (re.getStatus() != null){
+                    reservaEncontrada.get().setStatus(re.getStatus());
                 }
-                if(r.getStatus()!=null){
-                    q.get().setStatus(r.getStatus());
+                if (re.getDevolutionDate() != null){
+                    reservaEncontrada.get().setDevolutionDate(re.getDevolutionDate());
                 }
-                if(r.getGame()!=null){
-                    q.get().setGame(r.getGame());
-                }
-                if(r.getClient()!=null){
-                    q.get().setClient(r.getClient());
-                }
-                reservationRepository.save(q.get());
-                return q.get();
-            }else{
-                return r;
+                return reservationRepository.save(reservaEncontrada.get());
             }
-        }else{
-            return r;
         }
+        return re;
     }
-    public boolean delete(int id){
-        boolean flag=false;
-        Optional<Reservation>g= reservationRepository.getReservation(id);
-        if(g.isPresent()){
-            reservationRepository.delete(g.get());
-            flag=true;
-        }
-        return flag;
-
-    }
-
-
 }
