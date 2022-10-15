@@ -1,7 +1,7 @@
 package com.ciclo3.reto3.controller;
 
-import com.example.proyectomictic.entities.Admin;
-import com.example.proyectomictic.service.AdminService;
+import com.ciclo3.reto3.entities.Admin;
+import com.ciclo3.reto3.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
