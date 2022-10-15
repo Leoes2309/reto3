@@ -13,25 +13,25 @@ import java.util.Optional;
 public class ScoreController {
 
     @Autowired
-    private GameService gameService;
-
+    private ScoreService scoreService;
+    // /api/Score/all
     @GetMapping("/all")
     public List<Score> getAll(){
-        return gameService.getAll();
+        return scoreService.getAll();
     }
-
     @GetMapping("/{id}")
-    public Optional<Score> getScore(@PathVariable("id") int id){
-        return gameService.getGame(id);
-    }
 
+    public Optional<Score> getScore(@PathVariable("id") int id){
+        return scoreService.getScore(id);
+    }
+    // /api/Score/save
     @PostMapping("/save")
     public  Score save(@RequestBody Score score){
-        return  gameService.save(score);
+        return  scoreService.save(score);
     }
-
+    // /api/Score/update
     @PutMapping("/update")
     public  Score update(@RequestBody Score score){
-        return  gameService.save(score);
+        return  scoreService.save(score);
     }
 }

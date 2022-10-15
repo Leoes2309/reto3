@@ -1,6 +1,5 @@
 package com.ciclo3.reto3.service;
 
-import com.ciclo3.reto3.entities.Game;
 import com.ciclo3.reto3.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

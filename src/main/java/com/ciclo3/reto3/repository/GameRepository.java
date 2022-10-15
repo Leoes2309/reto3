@@ -1,7 +1,6 @@
 package com.ciclo3.reto3.repository;
 
-import com.ciclo3.reto3.entities.Game;
-import com.ciclo3.reto3.repository.crudRepository.GameCrudRepository;
+import com.ciclo3.reto3.repository.crudRepository.ScoreCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +11,7 @@ import java.util.Optional;
 public class GameRepository {
 
     @Autowired
-    private GameCrudRepository gameCrudRepository;
+    private ScoreCrudRepository gameCrudRepository;
 
     public List<Game> getAll(){
 
