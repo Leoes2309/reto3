@@ -10,26 +10,18 @@ import java.util.Optional;
 
 @Repository
 public class ScoreRepository {
-
     @Autowired
-    private ScoreCrudRepository gameCrudRepository;
-
+    private ScoreCrudRepository scoreCrudRepository;
     public List<Score> getAll(){
-
-        return (List<Score>) gameCrudRepository.findAll();
+        return (List<Score>) scoreCrudRepository.findAll();
     }
-
-    public Optional<Score> getGame(int id){
-        return gameCrudRepository.findById(id);
+    public Optional<Score> getScore(int id){
+        return scoreCrudRepository.findById(id);
     }
-
-    public Score save(Score g){
-
-        return gameCrudRepository.save(g);
+    public Score save(Score s){
+        return  scoreCrudRepository.save(s);
     }
-
-    public void delete(Score g){
-
-        gameCrudRepository.delete(g);
+    public  void delete (Score s){
+        scoreCrudRepository.delete(s);
     }
 }
