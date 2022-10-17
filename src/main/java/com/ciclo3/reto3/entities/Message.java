@@ -7,11 +7,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "message")
-public class Message {
+public class Message implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
-    // @Column(length = 45)
     private String messageText;
 
     @ManyToOne

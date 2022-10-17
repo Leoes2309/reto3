@@ -1,10 +1,11 @@
 package com.ciclo3.reto3.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table (name = "Admin")
-public class Admin {
+public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
