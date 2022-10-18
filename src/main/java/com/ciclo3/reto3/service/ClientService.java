@@ -73,6 +73,14 @@ public class ClientService {
         return flag;
 
     }
-
+    public boolean deleteClient(int id) {
+        Optional<Client> clientd = clientRepository.getClient(id);
+        if (clientd.isEmpty()) {
+            return false;
+        } else {
+            clientRepository.delete(clientd.get());
+            return true;
+        }
+    }
 
 }

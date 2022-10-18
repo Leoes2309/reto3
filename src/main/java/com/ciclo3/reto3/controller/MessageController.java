@@ -38,4 +38,10 @@ public class MessageController {
     public  Message update(@RequestBody Message m){
         return  messageService.save(m);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteMessage(@PathVariable int id){
+        return messageService.deleteMessage(id);
+    }
 }

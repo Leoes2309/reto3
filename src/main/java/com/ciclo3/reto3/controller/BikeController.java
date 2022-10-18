@@ -25,7 +25,17 @@ public class BikeController {
     public Bike save(@RequestBody Bike c){
         return bikeService.save(c);
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteCostume(@PathVariable int id){
+        return bikeService.delete(id);
+    }
 
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Bike updaCostume(@RequestBody Bike costume){
+        return bikeService.update(costume);
+    }
 
 }
 

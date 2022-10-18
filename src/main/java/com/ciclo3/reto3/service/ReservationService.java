@@ -50,4 +50,13 @@ public class ReservationService {
         }
         return re;
     }
+    public boolean reservationDelete(int id){
+        Optional<Reservation> reservationd = reservationRepository.getReservation(id);
+        if (reservationd.isEmpty()) {
+            return false;
+        } else {
+            reservationRepository.delete(reservationd.get());
+            return true;
+        }
+    }
 }
