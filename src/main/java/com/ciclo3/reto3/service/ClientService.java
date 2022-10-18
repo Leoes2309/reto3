@@ -32,36 +32,32 @@ public class ClientService {
             }
         }
     }
-    public Client update(Client c){
-        if(c.getIdClient()!=null){
-            Optional<Client> q = clientRepository.getClient(c.getIdClient());
-            if(q.isPresent()){
-                if(c.getEmail()!=null){
-                    q.get().setEmail(c.getEmail());
+    public Client updateClient(Client client) {
+
+        if (client.getIdClient() != null) {
+            Optional<Client> clientU = clientRepository.getClient(client.getIdClient());
+
+            if (!clientU.isEmpty()) {
+
+                for (Field f : client.getClass().getDeclaredFields()) {
+                    f.setAccessible(true);
+                    Object value;
+                    try {
+                        value = f.get(client);
+                        if (value != null) {
+                            System.out.println("entro");
+                            f.set(clientU.get(), value);
+                        }
+                    } catch (IllegalArgumentException ex) {
+                        Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
-                if(c.getPassword()!=null){
-                    q.get().setPassword(c.getPassword());
-                }
-                if(c.getName()!=null){
-                    q.get().setName(c.getName());
-                }
-                if(c.getAge()!=null){
-                    q.get().setAge(c.getAge());
-                }
-                if(c.getMessages()!=null){
-                    q.get().setMessages(c.getMessages());
-                }
-                if(c.getReservations()!=null){
-                    q.get().setReservations(c.getReservations());
-                }
-                clientRepository.save(q.get());
-                return q.get();
-            }else{
-                return c;
             }
-        }else{
-            return c;
+            return clientRepository.save(clientU.get());
         }
+        return client;
     }
     public boolean delete(int id){
         boolean flag=false;
