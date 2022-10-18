@@ -28,11 +28,13 @@ public class MessageController {
     }
 
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public  Message save(@RequestBody Message m){
         return messageService.save(m);
     }
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public  Message update(@RequestBody Message m){
         return  messageService.save(m);
     }
