@@ -1,55 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.ciclo3.reto3.entities;
 
+import com.ciclo3.reto3.entities.Bike;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/**
+ * Representa a una categoria en la que se clasifican los disfraces
+ * @author desaextremo
+ */
 @Entity
 @Table(name = "category")
-public class Category implements Serializable{
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Category implements Serializable {
+    /**
+     * primary key usada para Category
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer id;
-
+    /**
+     * nombre de la persona
+     */
+    @Column(nullable = false, length = 45)
     private String name;
-
+    /**
+     * descripcion de la persona
+     */
+    @Column(nullable = false, length = 250)
     private String description;
-
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "category")
+    /**
+     * forany kay de costume
+     */
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "category")
     @JsonIgnoreProperties("category")
     private List<Bike> bikes;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Bike> getBikes() {
-        return bikes;
-    }
-
-    public void setBikes(List<Bike> bikes) {
-        this.bikes = bikes;
-    }
 }
