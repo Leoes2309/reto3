@@ -114,4 +114,4 @@ public class Message implements Serializable {
     public void setBike(Bike bike) {
         this.bike = bike;
     }
-}}
+}
