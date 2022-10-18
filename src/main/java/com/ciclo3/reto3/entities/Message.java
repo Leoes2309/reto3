@@ -13,7 +13,7 @@ package com.ciclo3.reto3.entities;
 @Entity
 @Table(name = "message")
 
-public class Message implements Serializable {
+public class Message{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
