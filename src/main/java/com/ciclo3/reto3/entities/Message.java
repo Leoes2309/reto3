@@ -1,19 +1,14 @@
 package com.ciclo3.reto3.entities;
 
-        import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-        import javax.persistence.Entity;
-        import javax.persistence.GeneratedValue;
-        import javax.persistence.GenerationType;
-        import javax.persistence.Id;
-        import javax.persistence.JoinColumn;
-        import javax.persistence.ManyToOne;
-        import javax.persistence.Table;
-        import java.io.Serializable;
+/*
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "message")
-
-public class Message{
+public class Message implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
@@ -21,12 +16,12 @@ public class Message{
 
     @ManyToOne
     @JoinColumn(name = "bikeId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JsonIgnoreProperties({"message", "reservations"})
     private Bike bike;
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"messages","reservations"})
+    @JsonIgnoreProperties({"message", "reservations"})
     private Client client;
 
     public Integer getIdMessage() {
@@ -61,3 +56,62 @@ public class Message{
         this.client = client;
     }
 }
+*/
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name="message")
+public class Message implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idMessage;
+
+    @Column(nullable = false, length = 250)
+    private String messageText;
+
+    @ManyToOne
+    @JoinColumn(name = "idBike")
+    @JsonIgnoreProperties({"messages","bikes","reservations"})
+    private Bike bike;
+
+    @ManyToOne
+    @JoinColumn(name = "idClient")
+    @JsonIgnoreProperties({"client","messages","reservations"})
+    private Client client;
+
+    public Integer getIdMessage() {
+        return idMessage;
+    }
+
+    public void setIdMessage(Integer idMessage) {
+        this.idMessage = idMessage;
+    }
+
+    public String getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Bike getBike() {
+        return bike;
+    }
+
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
+}}
